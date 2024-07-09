@@ -23,6 +23,7 @@ x      # You can print the value of a variable by typing it (mainly effective fo
 # Functions are chunks of code that do a specific task
 ```{r}
 numbers = 1:4 # Let's make a variable
+numbers
 
 # Some important basic functions
 sum(numbers) # get the sum of vector elements
@@ -33,9 +34,11 @@ sd(numbers) # standard deviation
 
 # You can assign the output of a function to a variable to use later
 sem<-sd(numbers)/sqrt(length(numbers)) # standard error
+print(paste("Standard Error:", sem))
 
 # You can do mathematical operations with a combination of variables and functions using the normal mathematical operators and brackets
 C1<-c(mean(numbers)-1.96*sem,mean(numbers)+1.96*sem) # 95% confidence intervals of the mean
+print(paste("Confidence Intervals:", C1))
 
 # Access the help file of a function by typing help(functionName) or searching in the lower-right window
 help("t.test")
@@ -126,7 +129,6 @@ In R, you can load this data in as a type called a dataframe.
   The mtcars dataset: https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars
 ```{r}
 carData=read.csv(file.choose())
-carData2 = mtcars
 ```
 
 # You can refer to specific values in a dataset [row,column]
@@ -227,12 +229,12 @@ summary(model1) #more details!
 
 # One-way ANOVAs
 ```{r}
-show(s) #Recall that we alredy calculated summary statistics for mpg. The means differ, but are they significantly different?
+show(carStats) #Recall that we alredy calculated summary statistics for mpg. The means differ, but are they significantly different?
 
 # There are two different ways of running an ANOVA in R. They are equivalent but will print slightly different output
 model2<-lm(mpg~cyl, data = carData)
-model3<-aov(mpg ~ cyl, data = carData)
-Anova(model3,type="III") # Get an ANOVA table
+Anova(model2,type="III") # Get an ANOVA table
+anova(model2) # Get an ANOVA table
 ```
 
 # Post-hoc tests
@@ -326,7 +328,7 @@ q=p+stat_summary(geom = "errorbar",
         axis.title.y=element_text(vjust=5),                           #Change the position of the y axis title
         axis.title.x=element_blank(),                                 #Get rid of your x axis title
         axis.text.x=element_blank(),                                  #Get rid of you x axis labels
-        text=element_text(size=40, family="serif"),                   #Make the rest of the font bigger and Times New Roman
+        text=element_text(size=20, family="serif"),                   #Make the rest of the font bigger and Times New Roman
         plot.margin=unit(c(1,1,0.5,1.1),"cm"))                        #Change some margins so that things fit nicely.
 
 show(q)
@@ -395,7 +397,7 @@ ggplot(carData,aes(x=factor(cyl),y=mpg,color=factor(am)))+
         axis.title.y=element_text(vjust=5),                           #Change the position of the y axis title
         axis.title.x=element_blank(),                                 #Get rid of your x axis title
         #axis.text.x=element_blank(),                                  #Get rid of you x axis labels
-        text=element_text(size=40, family="serif"),                   #Make the rest of the font bigger and Times New Roman
+        text=element_text(size=20, family="serif"),                   #Make the rest of the font bigger and Times New Roman
         plot.margin=unit(c(1,1,0.5,1.1),"cm"))                        #Change some margins so that things fit nicely.
 ```
 
@@ -428,7 +430,7 @@ ggplot(carData,aes(x=factor(cyl),y=mpg),color=factor(am))+
         axis.title.y=element_text(vjust=5),                           #Change the position of the y axis title
         axis.title.x=element_blank(),                                 #Get rid of your x axis title
         #axis.text.x=element_blank(),                                  #Get rid of you x axis labels
-        text=element_text(size=40, family="serif"),                   #Make the rest of the font bigger and Times New Roman
+        text=element_text(size=20, family="serif"),                   #Make the rest of the font bigger and Times New Roman
         plot.margin=unit(c(1,1,0.5,1.1),"cm"))                        #Change some margins so that things fit nicely.
 ```
 
